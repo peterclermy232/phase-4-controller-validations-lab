@@ -8,7 +8,7 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    author = Author.create!(author_params)
+    author = Author.create(author_params)
 
     render json: author, status: :created
   end
@@ -20,7 +20,6 @@ class AuthorsController < ApplicationController
   end
 
   def render_unprocessable_entity_response(invalid)
-    render json: { errors: invalid.record.errors}, status: :unprocessable_entity
-  end
+    render json: { error: invalid.record.errors}
   
 end
